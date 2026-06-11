@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg1)"/>
+
+  <!-- Chat interface mockup -->
+  <rect x="40" y="40" width="320" height="220" rx="12" fill="#0f0f23" stroke="#333" stroke-width="1"/>
+
+  <!-- Header -->
+  <rect x="40" y="40" width="320" height="40" rx="12" fill="#1a1a2e"/>
+  <rect x="40" y="65" width="320" height="15" fill="#1a1a2e"/>
+  <circle cx="60" cy="60" r="12" fill="url(#grad1)"/>
+  <text x="80" y="64" fill="white" font-size="12" font-family="system-ui">PolarisChat</text>
+
+  <!-- Chat messages -->
+  <rect x="60" y="90" width="200" height="30" rx="8" fill="#2d2d4a"/>
+  <text x="75" y="108" fill="#aaa" font-size="10">How do neural networks learn?</text>
+
+  <rect x="160" y="130" width="180" height="50" rx="8" fill="url(#grad1)"/>
+  <text x="175" y="148" fill="white" font-size="9">Neural networks learn through</text>
+  <text x="175" y="162" fill="white" font-size="9">backpropagation...</text>
+
+  <rect x="60" y="190" width="150" height="25" rx="8" fill="#2d2d4a"/>
+  <text x="75" y="206" fill="#aaa" font-size="9">Show me the code</text>
+
+  <!-- Input field -->
+  <rect x="60" y="230" width="240" height="25" rx="12" fill="#2d2d4a"/>
+  <rect x="310" y="230" width="35" height="25" rx="8" fill="url(#grad1)"/>
+  <text x="320" y="246" fill="white" font-size="12">→</text>
+
+  <!-- Floating elements -->
+  <circle cx="350" cy="50" r="3" fill="#3B82F6" opacity="0.6"/>
+  <circle cx="50" cy="250" r="2" fill="#8B5CF6" opacity="0.4"/>
+</svg>

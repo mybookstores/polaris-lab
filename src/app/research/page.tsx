@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { FlaskConical, Users, Brain, Bot, ArrowRight, Sparkles, BookOpen } from "lucide-react";
 import { researchDirections, papers } from "@/data";
@@ -98,10 +99,10 @@ export default function ResearchPage() {
                       </p>
 
                       <Link href={`/research/${direction.id}`}>
-                        <button className="group flex items-center gap-2 text-primary font-medium">
+                        <Button variant="ghost" className="gap-2 px-0 group">
                           Explore {direction.name}
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                        </Button>
                       </Link>
                     </div>
 

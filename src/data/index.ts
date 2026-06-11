@@ -299,6 +299,7 @@ export const products = [
     tagline: "Scientific AI Assistant",
     description: "An intelligent assistant powered by Polaris-7B, designed for researchers and scientists to accelerate literature review, hypothesis generation, and data analysis.",
     features: ["Literature search", "Paper summarization", "Code generation", "Data visualization"],
+    image: "/images/polaris-chat.svg",
     link: "#",
     demo: "#"
   },
@@ -308,6 +309,7 @@ export const products = [
     tagline: "Social Media Bot Detection",
     description: "A real-time API service for detecting social bots on Twitter, Weibo, and other platforms. Achieve 96%+ accuracy with our multi-modal analysis engine.",
     features: ["Real-time detection", "Batch processing", "API access", "Dashboard analytics"],
+    image: "/images/bot-scanner.svg",
     link: "#",
     demo: "#"
   },
@@ -317,6 +319,7 @@ export const products = [
     tagline: "AI-Powered Materials Platform",
     description: "A web platform for discovering and analyzing novel materials using AI. Browse our database of 100K+ materials and predict properties with one click.",
     features: ["Property prediction", "Crystal structure search", "Similarity analysis", "Export reports"],
+    image: "/images/mat-discovery.svg",
     link: "#",
     demo: "#"
   }

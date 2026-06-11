@@ -375,10 +375,14 @@ export default function AchievementsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
                     >
-                      <Card className="overflow-hidden hover:bg-card/80 transition-colors border-border/50">
-                        {/* Product Image Placeholder */}
-                        <div className="h-40 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                          <Package className="w-12 h-12 text-muted-foreground/50" />
+                     <Card className="overflow-hidden hover:bg-card/80 transition-colors border-border/50">
+                        {/* Product Image */}
+                        <div className="h-44 bg-card flex items-center justify-center overflow-hidden">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
 
                         <div className="p-6">

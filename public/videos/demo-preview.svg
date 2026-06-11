@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180">
+  <defs>
+    <linearGradient id="video-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0f0f23"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#video-bg)"/>
+
+  <!-- Play button -->
+  <circle cx="160" cy="90" r="30" fill="#3B82F6" opacity="0.9"/>
+  <polygon points="155,80 155,100 175,90" fill="white"/>
+
+  <!-- Progress bar -->
+  <rect x="20" y="160" width="280" height="4" rx="2" fill="#333"/>
+  <rect x="20" y="160" width="140" height="4" rx="2" fill="#3B82F6"/>
+
+  <!-- Time -->
+  <text x="25" y="155" fill="#888" font-size="10">2:15</text>
+  <text x="280" y="155" fill="#888" font-size="10">5:30</text>
+
+  <!-- Title overlay -->
+  <rect x="0" y="0" width="320" height="40" fill="#000" opacity="0.5"/>
+  <text x="15" y="25" fill="white" font-size="12" font-weight="bold">Polaris Lab Demo Video</text>
+</svg>
