@@ -1,0 +1,204 @@
+{
+  "nav": {
+    "home": "Home",
+    "research": "Research",
+    "achievements": "Achievements",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Polaris Lab",
+      "subtitle": "Pioneering AI Research",
+      "description": "Exploring the frontiers of Artificial Intelligence at Peking University. From AI for Science to Physical AI, we push the boundaries of what's possible.",
+      "cta": "Explore Our Research"
+    },
+    "stats": {
+      "papers": "Papers Published",
+      "patents": "Patents",
+      "datasets": "Datasets",
+      "members": "Researchers"
+    },
+    "research": {
+      "title": "Research Directions",
+      "subtitle": "Four pillars of AI innovation",
+      "aiForScience": {
+        "name": "AI for Science",
+        "description": "Applying AI to advance scientific discovery in environment and materials"
+      },
+      "socialComputing": {
+        "name": "Social Computing",
+        "description": "Understanding and analyzing social phenomena through computational methods"
+      },
+      "generalAI": {
+        "name": "General AI",
+        "description": "Advancing large language models, agents, and world models"
+      },
+      "physicalAI": {
+        "name": "Physical AI",
+        "description": "Bridging AI with robotics and embodied intelligence"
+      }
+    },
+    "latest": {
+      "title": "Latest Achievements",
+      "viewAll": "View All"
+    }
+  },
+  "research": {
+    "title": "Research Directions",
+    "subtitle": "Our four core research pillars",
+    "directions": {
+      "aiForScience": {
+        "name": "AI for Science",
+        "description": "Leveraging AI to accelerate scientific breakthroughs in environmental science and materials discovery. We develop deep learning models that can predict molecular properties, simulate chemical reactions, and optimize experimental designs.",
+        "subdirections": {
+          "environment": {
+            "name": "Environment",
+            "description": "Climate modeling, environmental monitoring, and sustainable AI solutions"
+          },
+          "material": {
+            "name": "Material",
+            "description": "AI-driven materials discovery and property prediction"
+          }
+        }
+      },
+      "socialComputing": {
+        "name": "Social Computing",
+        "description": "Investigating social dynamics through computational lens. We study social network structures, detect automated bots, and model social phenomena using large-scale data analysis.",
+        "subdirections": {
+          "socialBot": {
+            "name": "Social Bot Detection",
+            "description": "Identifying and analyzing social bots in online platforms"
+          },
+          "socialScience": {
+            "name": "Social Science",
+            "description": "Computational approaches to social phenomena and network analysis"
+          }
+        }
+      },
+      "generalAI": {
+        "name": "General AI",
+        "description": "Pushing the boundaries of general artificial intelligence through large language models, autonomous agents, and world models that can reason and plan.",
+        "subdirections": {
+          "llmPostTraining": {
+            "name": "LLM Post-Training",
+            "description": "Fine-tuning, alignment, and reinforcement learning for LLMs"
+          },
+          "llmAgent": {
+            "name": "LLM Agent",
+            "description": "Building autonomous agents powered by large language models"
+          },
+          "llmApplication": {
+            "name": "LLM Application",
+            "description": "Practical applications and systems built on LLMs"
+          },
+          "worldModel": {
+            "name": "World Model",
+            "description": "Building internal representations of the world for AI systems"
+          }
+        }
+      },
+      "physicalAI": {
+        "name": "Physical AI",
+        "description": "Integrating AI with physical systems to create intelligent robots and embodied agents that can perceive, reason, and act in the real world.",
+        "subdirections": {
+          "robotics": {
+            "name": "Robotics",
+            "description": "Intelligent robotics, manipulation, and embodied AI"
+          }
+        }
+      }
+    }
+  },
+  "achievements": {
+    "title": "Research Achievements",
+    "subtitle": "Our contributions to the AI community",
+    "tabs": {
+      "papers": "Papers",
+      "patents": "Patents",
+      "datasets": "Datasets",
+      "benchmarks": "Benchmarks",
+      "products": "Products"
+    },
+    "papers": {
+      "title": "Publications",
+      "description": "Peer-reviewed papers published in top venues",
+      "filter": {
+        "all": "All",
+        "aiForScience": "AI for Science",
+        "socialComputing": "Social Computing",
+        "generalAI": "General AI",
+        "physicalAI": "Physical AI"
+      }
+    },
+    "patents": {
+      "title": "Patents",
+      "description": "Granted and pending patents"
+    },
+    "datasets": {
+      "title": "Datasets",
+      "description": "Public datasets released by our lab"
+    },
+    "benchmarks": {
+      "title": "Benchmarks",
+      "subtitle": "State-of-the-art results on key benchmarks",
+      "description": "Our models achieve top performance on leading evaluation benchmarks across different research directions."
+    },
+    "products": {
+      "title": "Products & Tools",
+      "description": "Practical tools and platforms developed by our team"
+    }
+  },
+  "about": {
+    "title": "About Polaris Lab",
+    "subtitle": "Located at Peking University",
+    "intro": "Polaris Lab is an AI research laboratory dedicated to advancing the frontier of artificial intelligence. Founded with a vision to bridge theoretical breakthroughs and practical applications, we bring together researchers from diverse backgrounds to tackle grand challenges in AI.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To conduct world-class AI research that advances scientific discovery, benefits society, and shapes the future of intelligent systems."
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Meet the researchers behind Polaris"
+    },
+    "recruitment": {
+      "title": "Join Us",
+      "subtitle": "We're looking for talented researchers",
+      "positions": {
+        "phd": "PhD Students",
+        "intern": "Research Interns",
+        "postdoc": "Postdoctoral Researchers",
+        "visitor": "Visiting Scholars"
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email": "Email",
+      "address": "Address",
+      "location": "Peking University, Beijing, China"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Polaris Lab, Peking University. All rights reserved.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "backToTop": "Back to Top",
+    "year": "Year",
+    "authors": "Authors",
+    "venue": "Venue",
+    "citations": "Citations",
+    "download": "Download",
+    "demo": "Demo",
+    "github": "GitHub",
+    "paper": "Paper",
+    "code": "Code"
+  }
+}
