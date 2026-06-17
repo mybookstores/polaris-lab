@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { isSanityConfigured } from "@/lib/cms";
 
 export const dynamic = "force-static";
-export { metadata } from "next-sanity/studio/metadata";
-export { viewport } from "next-sanity/studio/viewport";
+export { metadata, viewport } from "next-sanity/studio";
 
 function StudioSetupState() {
   return (
