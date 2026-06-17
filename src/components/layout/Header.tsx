@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 const navItems = [
   { href: "/", label: "Home", zhLabel: "首页" },
@@ -23,9 +23,45 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState<"en" | "zh">("en");
+  const { setLang, isZh } = useLanguage();
 
-  const isZh = lang === "zh";
+  // 动态导入useState避免服务端问题
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setMounted(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 glass">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="relative w-8 h-8">
+                <svg viewBox="0 0 32 32" className="w-full h-full">
+                  <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="hsl(217, 91%, 60%)" />
+                      <stop offset="100%" stopColor="hsl(262, 83%, 58%)" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M16 2 L18 12 L28 14 L18 16 L16 26 L14 16 L4 14 L14 12 Z" fill="url(#logoGradient)" />
+                </svg>
+              </div>
+              <span className="font-heading text-lg font-semibold tracking-tight">
+                Polaris<span className="gradient-text">Lab</span>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 glass">
@@ -41,7 +77,6 @@ export function Header() {
                     <stop offset="100%" stopColor="hsl(262, 83%, 58%)" />
                   </linearGradient>
                 </defs>
-                {/* Polaris star */}
                 <path
                   d="M16 2 L18 12 L28 14 L18 16 L16 26 L14 16 L4 14 L14 12 Z"
                   fill="url(#logoGradient)"
@@ -61,13 +96,16 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200",
+                  "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative",
                   pathname === item.href
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
                 {isZh ? item.zhLabel : item.label}
+                {pathname === item.href && (
+                  <span className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary rounded-full" />
+                )}
               </Link>
             ))}
           </nav>
@@ -78,7 +116,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setLang(lang === "en" ? "zh" : "en")}
+              onClick={() => setLang(isZh ? "en" : "zh")}
               className="hidden sm:flex items-center gap-1 text-xs"
             >
               <Globe className="w-4 h-4" />
@@ -87,10 +125,8 @@ export function Header() {
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger className="md:hidden">
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(true)}>
-                  <Menu className="w-5 h-5" />
-                </Button>
+              <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
+                <Menu className="w-5 h-5" />
               </SheetTrigger>
               <SheetContent side="right" className="w-64 bg-background border-l border-border">
                 <nav className="flex flex-col gap-2 mt-8">
@@ -112,7 +148,7 @@ export function Header() {
                   <div className="pt-4 border-t border-border mt-4">
                     <Button
                       variant="ghost"
-                      onClick={() => setLang(lang === "en" ? "zh" : "en")}
+                      onClick={() => setLang(isZh ? "en" : "zh")}
                       className="w-full justify-start"
                     >
                       <Globe className="w-4 h-4 mr-2" />

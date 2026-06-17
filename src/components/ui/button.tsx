@@ -1,10 +1,12 @@
+"use client";
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
-
+import { useState } from "react";
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button relative inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 overflow-hidden",
   {
     variants: {
       variant: {
@@ -40,18 +42,67 @@ const buttonVariants = cva(
   }
 )
 
+type ButtonClickEvent = Parameters<NonNullable<ButtonPrimitive.Props["onClick"]>>[0];
+
+interface Ripple {
+  x: number;
+  y: number;
+  size: number;
+  key: number;
+}
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  onClick,
+  children,
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+
+  const handleClick = (e: ButtonClickEvent) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    const newRipple = { x, y, size, key: Date.now() };
+    setRipples((prev) => [...prev, newRipple]);
+
+    // Remove ripple after animation
+    setTimeout(() => {
+      setRipples((prev) => prev.filter((r) => r.key !== newRipple.key));
+    }, 600);
+
+    // Call original onClick if provided
+    if (onClick) {
+      onClick(e);
+    }
+  };
+
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      onClick={handleClick}
       {...props}
-    />
+    >
+      {children}
+      {ripples.map((ripple) => (
+        <span
+          key={ripple.key}
+          className="absolute rounded-full bg-white/30 pointer-events-none animate-ripple"
+          style={{
+            left: ripple.x,
+            top: ripple.y,
+            width: ripple.size,
+            height: ripple.size,
+          }}
+        />
+      ))}
+    </ButtonPrimitive>
   )
 }
 

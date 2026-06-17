@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { ArrowRight, FileText, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, Sparkles } from "lucide-react";
+import { SectionHeader } from "@/components/sections/SectionHeader";
+import { SectionShell } from "@/components/sections/SectionShell";
 import { papers, researchDirections } from "@/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function LatestAchievements() {
+  const { isZh } = useLanguage();
   const latestPapers = papers.slice(0, 3);
 
   const getDirectionColor = (directionId: string) => {
@@ -17,96 +20,81 @@ export function LatestAchievements() {
   };
 
   return (
-    <section className="py-24 bg-card/30 border-y border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center justify-between mb-12"
-        >
-          <div>
-            <Badge variant="outline" className="mb-4 px-4">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Fresh from the Lab
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold tracking-tight">
-              Latest <span className="gradient-text">Publications</span>
-            </h2>
-          </div>
-          <Link href="/achievements">
-            <Button variant="ghost" className="gap-2">
-              View All
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
-        </motion.div>
+    <SectionShell className="py-20 sm:py-24" topDivider>
+      <SectionHeader
+        badge={isZh ? "最新成果" : "Fresh from the Lab"}
+        badgeIcon={<Sparkles className="mr-1 h-3 w-3" />}
+        heading={isZh ? "近期代表性成果" : "Latest Publications"}
+        description={
+          isZh
+            ? "从近期论文中快速了解实验室在不同研究方向上的持续产出与代表性工作。"
+            : "A quick look at recent papers that reflect the lab’s current output across multiple research directions."
+        }
+        actions={
+          <Button variant="ghost" className="gap-2" render={<Link href="/achievements" />}>
+            {isZh ? "查看全部" : "View All"}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        }
+      />
 
-        {/* Papers Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {latestPapers.map((paper, index) => (
-            <motion.div
-              key={paper.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="group h-full p-6 hover:bg-card/80 transition-all duration-300 border-border/50 hover:border-primary/30 flex flex-col">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
+        {latestPapers.map((paper) => {
+          const hasPaperLink = paper.link && paper.link !== "#";
+
+          return (
+            <div key={paper.id} className="home-fade-in home-fade-in-delay-1">
+              <Card className="group flex h-full flex-col border border-border/45 bg-card/35 p-5 transition-colors duration-200 hover:border-primary/25 hover:bg-card/55">
+                <div className="mb-3 flex items-start justify-between gap-3">
                   <Badge
                     variant="secondary"
                     className="text-xs"
                     style={{
-                      backgroundColor: `${getDirectionColor(paper.direction)}20`,
+                      backgroundColor: `${getDirectionColor(paper.direction)}15`,
                       color: getDirectionColor(paper.direction),
-                      borderColor: `${getDirectionColor(paper.direction)}40`,
+                      borderColor: `${getDirectionColor(paper.direction)}30`,
                     }}
                   >
                     {researchDirections.find((d) => d.id === paper.direction)?.name}
                   </Badge>
-                  <span className="text-muted-foreground text-xs">{paper.year}</span>
+                  <span className="text-xs text-muted-foreground">{paper.year}</span>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-heading font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 className="mb-2 line-clamp-2 font-heading text-base font-medium leading-6 transition-colors group-hover:text-primary">
                   {paper.title}
                 </h3>
 
-                {/* Authors */}
-                <div className="flex items-center gap-1 mb-3 text-sm text-muted-foreground">
-                  <FileText className="w-4 h-4" />
+                <div className="mb-2 line-clamp-1 text-xs uppercase tracking-[0.18em] text-foreground/45">{paper.venue}</div>
+
+                <div className="mb-2 flex min-w-0 items-center gap-1 text-xs text-muted-foreground">
+                  <FileText className="h-3.5 w-3.5" />
                   <span className="truncate">{paper.authors.join(", ")}</span>
                 </div>
 
-                {/* Venue */}
-                <div className="text-xs text-muted-foreground mb-4">
-                  {paper.venue}
-                </div>
-
-                {/* Abstract */}
-                <p className="text-sm text-muted-foreground line-clamp-3 flex-1">
+                <p className="mb-4 line-clamp-3 flex-1 text-sm leading-6 text-muted-foreground">
                   {paper.abstract}
                 </p>
 
-                {/* Footer */}
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50">
+                <div className="mt-auto flex items-center justify-between border-t border-border/30 pt-3">
                   <span className="text-xs text-muted-foreground">
-                    {paper.citations} citations
+                    {paper.citations} {isZh ? "次引用" : "citations"}
                   </span>
-                  <Button variant="ghost" size="sm" className="h-8 text-xs">
-                    Read Paper
-                    <ArrowRight className="w-3 h-3 ml-1" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2 text-xs"
+                    disabled={!hasPaperLink}
+                    render={hasPaperLink ? <a href={paper.link} target="_blank" rel="noreferrer" /> : undefined}
+                  >
+                    {isZh ? "阅读" : "Read"}
+                    <ArrowRight className="ml-1 h-3 w-3" />
                   </Button>
                 </div>
               </Card>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          );
+        })}
       </div>
-    </section>
+    </SectionShell>
   );
 }
