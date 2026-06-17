@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { ToastProvider } from "@/components/ui/toast";
+import { BackToTop } from "@/components/ui/back-to-top";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-sans",
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
     title: "Polaris Lab | AI Research at Peking University",
     description: "Pioneering AI research in Science, Society, Intelligence, and Robotics.",
     type: "website",
-    locale: "en_US",
+    locale: "zh_CN",
   },
 };
 
@@ -37,12 +40,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="zh" className="dark">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} min-h-screen bg-background text-foreground antialiased`}
       >
         <TooltipProvider>
-          {children}
+          <LanguageProvider>
+            <ToastProvider>
+              {children}
+              <BackToTop />
+            </ToastProvider>
+          </LanguageProvider>
         </TooltipProvider>
       </body>
     </html>
